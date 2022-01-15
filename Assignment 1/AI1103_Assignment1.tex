@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{units}
+\usepackage{booktabs}
+\usepackage{amsmath, amsthm, amssymb, bm}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{shapes, arrows, positioning, fit, calc}
+\newtheorem{theorem}{Theorem}
+\newtheorem{Property}{Property}
+\theoremstyle{remark}
+\newtheorem*{defn}{Definition}
+\renewcommand{\vec}[1]{\underline{#1}}
+\usepackage{units}
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+\title{AI1103 Assignement 1}
+\author{Hritik Sarkar}
+
+\begin{document}
+
+\maketitle
+
+Question 52. Consider the function $ f(x) $ defined as $ f(x) = c e^{-x^{4}}, x\in \mathbb{R}$. For what value of c is $f$ a probability density function?
+\\
+\\ a) $\frac{2}{\Gamma (\frac{1}{4})}$
+\\ b) $\frac{4}{\Gamma (\frac{1}{4})}$
+\\ c) $\frac{3}{\Gamma (\frac{1}{3})}$
+\\ d) $\frac{1}{4\Gamma(4) }$
+\\
+
+Answer: Gamma function $(\Gamma)$ is defined as 
+\[
+\Gamma (n) = \int_{0}^{\infty} e^{-x} x^{n-1} dx
+\]
+For a function $f(x)$ to be a probability density function the below condition has to be satisfied
+\[
+\int_{-\infty}^{\infty} f(x) dx = 1
+\]
+
+We can check the condition for the $f(x)$ given.
+
+\begin{align*}
+    I &= \int_{-\infty}^{\infty} c e^{-x^{4}} dx \\
+    &= 2c\int_{0}^{\infty}e^{-x^{4}} dx &&\textit{($-x^4$ is an even function)} \\
+    &= \frac{2c}{4}\int_{0}^{\infty} e^{-y} y^{-\frac{3}{4}} dy &&\textit{(change of variables)}
+\end{align*}
+consider
+\begin{align*}
+  y&=x^4 \\
+  \llap{$\Rightarrow$\hspace{50pt}} dy&=4x^3dx\\
+  \llap{$\Rightarrow$\hspace{50pt}} dx &= \frac{1}{4} y^{-\frac{3}{4}} dy
+\end{align*}
+Continuing from above
+\begin{align*}
+    I &=\frac{c}{2}\int_{0}^{\infty} e^{-y} y^{-\frac{3}{4}} dy \\
+    &= \frac{c}{2}\int_{0}^{\infty} e^{-y} y^{(\frac{1}{4}-1)} dy \\
+    &= \frac{c}{2} \Gamma (\frac{1}{4}) &&\textit{(comparing with the definition of gamma function)}
+\end{align*}
+
+\begin{align*}
+    \frac{c}{2}\Gamma (\frac{1}{4})&=1 \\
+    \llap{$\Rightarrow$\hspace{50pt}}c&=\frac{2}{\Gamma (\frac{1}{4})} &&\textit{Ans.}
+\end{align*}
+
+\end{document}
