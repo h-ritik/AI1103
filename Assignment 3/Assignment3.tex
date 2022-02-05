@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\usepackage{units}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm, amssymb, bm}
+\usepackage{tikz, pgfplots}
+\usepackage{lipsum}
+\usepackage{mwe}
+\usetikzlibrary{shapes, arrows, positioning, fit, calc}
+\newtheorem{theorem}{Theorem}
+\newtheorem{Property}{Property}
+\theoremstyle{remark}
+\newtheorem*{defn}{Definition}
+\renewcommand{\vec}[1]{\underline{#1}}
+\usepackage{units}
+\usepackage{fancyvrb}
+\usepackage{hyperref}
+\fvset{fontsize=\normalsize}
+
+\title{AI1103 Assignement 3}
+\author{Hritik Sarkar}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+
+\begin{document}
+\maketitle
+Paper - \href{https://github.com/gadepall/papers/blob/master/ugc/math/dec-math-set-a-2018.pdf}{UGC 2018-Dec}
+\newline
+\newline
+Q53. Given the observations $0.8,0.71,0.9,1.2,1.68,1.4,0.88,1.62$ from the uniform distribution on $(\theta-0.2,\theta+0.8)$ with $-\infty< \theta < \infty$, which of the following is a maximum likelihood estimate for $\theta$ ?
+\newline
+1) $0.7$ \\
+2) $0.9$ \\
+3) $1.1$ \\
+4) $1.3$ \\
+\newline
+Answer.
+\[
+    X \sim U(\theta-0.2,\theta+0.8)
+\]
+Let the pdf be denoted by $f$, then
+\[
+    P(x|\theta) = f(x|\theta) = 
+    \begin{cases}
+     \frac{1}{(\theta+0.8)-(\theta-0.2)} = 1 &(\theta-0.2 \le x \le \theta+0.8)
+     \\ 0 &\textit{(Otherwise)}
+\end{cases}
+\]
+and let the observations be denoted by $\vec{X}=(X_1,X_2,\cdots,X_n)$. \\
+\newline
+Now, the likelihood function for the observations $(X_1=x_1,X_2=x_2,\cdots,X_n=x_n)$ is given by\\
+\begin{align*}
+    L(\vec{x}|\theta)&=P(X_1=x_1,X_2=x_2,\cdots,X_n=x_n | \theta)\\
+    &= P(X = x_1 |\theta)\times P(X=x_2 |\theta) \times  \cdots \times P(X = x_n |\theta) &\textit{(i.i.d assumption)}\\ 
+\end{align*}
+So,
+\[
+L(\vec{x}|\theta) = \begin{cases}
+ 1 &\textit{when $all(\vec{x}) \ge \theta-0.2$ and $all(\vec{x}) \le \theta+0.8$} \\
+ 0 &\textit{(Otherwise)}
+\end{cases}
+\]
+\newline
+maximising the likelihood implies satisfying the following condition
+\[
+    all(\vec{x}) \ge \theta-0.2 \textit{ and } all(\vec{x}) \le \theta+0.8
+\]
+which is same as satisfying
+\[
+    min(\vec{x}) \ge \theta-0.2 \textit{ and } max(\vec{x}) \le \theta+0.8
+\]
+For the given question $min(\vec{x}) = 0.71$ and $max(\vec{x}) = 1.68$
+\newline
+So,
+\[
+    0.71 \ge \theta-0.2 \textit{ and } 1.68 \le \theta+0.8
+\]
+\[
+\implies 0.91 \ge \theta \textit{ and } 0.88 \le \theta
+\]
+Only option that satisfies the condition is the second option 0.9 (Answer)
+\end{document}
