@@ -42,18 +42,17 @@ Answer.
 \]
 Let the pdf be denoted by $f$, then
 \[
-    P(x|\theta) = f(x|\theta) = 
+    f(x|\theta) = 
     \begin{cases}
      \frac{1}{(\theta+0.8)-(\theta-0.2)} = 1 &(\theta-0.2 \le x \le \theta+0.8)
      \\ 0 &\textit{(Otherwise)}
 \end{cases}
 \]
-and let the observations be denoted by $\vec{X}=(X_1,X_2,\cdots,X_n)$. \\
 \newline
-Now, the likelihood function for the observations $(X_1=x_1,X_2=x_2,\cdots,X_n=x_n)$ is given by\\
+Now, the likelihood function for the observations $\vec{x} = \{x_1,x_2,\cdots,x_n\}$ is given by\\
 \begin{align*}
-    L(\vec{x}|\theta)&=P(X_1=x_1,X_2=x_2,\cdots,X_n=x_n | \theta)\\
-    &= P(X = x_1 |\theta)\times P(X=x_2 |\theta) \times  \cdots \times P(X = x_n |\theta) &\textit{(i.i.d assumption)}\\ 
+    L(\vec{x}|\theta)&=P(\vec{x}| \theta)\\
+    &= f(x_1 |\theta)\times f(x_2 |\theta) \times  \cdots \times f(x_n |\theta) &\textit{(i.i.d assumption)}\\ 
 \end{align*}
 So,
 \[
@@ -80,5 +79,9 @@ So,
 \[
 \implies 0.91 \ge \theta \textit{ and } 0.88 \le \theta
 \]
-Only option that satisfies the condition is the second option 0.9 (Answer)
+
+\[
+\implies 0.88 \le \theta \le 0.91
+\]
+The only option that satisfies the condition is the second option 0.9 (Answer)
 \end{document}
