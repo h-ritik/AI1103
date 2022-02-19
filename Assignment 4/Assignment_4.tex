@@ -1,0 +1,120 @@
+\documentclass{article}
+
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{units}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm, amssymb, bm}
+\usepackage{tikz, pgfplots}
+\usepackage{lipsum}
+\usepackage{mwe}
+\usetikzlibrary{shapes, arrows, positioning, fit, calc}
+\newtheorem{theorem}{Theorem}
+\newtheorem{Property}{Property}
+\theoremstyle{remark}
+\newtheorem*{defn}{Definition}
+\renewcommand{\vec}[1]{\underline{#1}}
+\usepackage{units}
+\usepackage{fancyvrb}
+\usepackage{hyperref}
+\fvset{fontsize=\normalsize}
+
+\title{AI1103 Assignement 4}
+\author{Hritik Sarkar}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+
+\begin{document}
+\maketitle
+Paper - \href{https://github.com/gadepall/papers/blob/master/ugc/math/dec-math-set-a-2018.pdf}{UGC 2018-Dec}
+\newline
+\newline
+Q59. In a $2^{4}$ experiment with two blocks and factors $A$, $B$, $C$ and $D$, one block contains the following treatment combinations $a,b,c,ad,bd,cd,abc,abcd$. Which of the following effects is confounded?
+\newline
+1. $ABC$\\
+2. $ABD$\\
+3. $BCD$\\
+4. $ABCD$
+\newline
+\newline
+Answer. It is a $2^{4}$ experiment, which means that the each factor has two levels and there are a total of 16 treatment combination under consideration. We denote the two levels of each factor by 0 and 1.
+\begin{center}
+\begin{tabular}{ ||c|c|c|c|c|c|c|c|c|| } 
+ \hline
+ Treatment combinations & $A$ & $B$ & $C$ & $D$ & $ABC$ & $ABD$ & $BCD$ & $ABCD$\\
+ \hline
+$(1)$  &    0   &   0   &   0   &   0   &   0   &   0   &   0   &   1   \\
+ \hline
+$a$    &    1   &   0   &   0   &   0   &   1   &   1   &   0   &   0   \\
+ \hline
+$b$    &    0   &   1   &   0   &   0   &   1   &   1   &   1   &   0   \\
+ \hline
+$ab$   &    1   &   1   &   0   &   0   &   0   &   0   &   1   &   1   \\
+ \hline
+$c$    &    0   &   0   &   1   &   0   &   1   &   0   &   1   &   0   \\
+ \hline
+$ac$   &    1   &   0   &   1   &   0   &   0   &   1   &   1   &   1   \\
+ \hline
+$bc$   &    0   &   1   &   1   &   0   &   0   &   1   &   0   &   1   \\
+ \hline
+$abc$  &    1   &   1   &   1   &   0   &   1   &   0   &   0   &   0   \\
+ \hline
+$d$    &    0   &   0   &   0   &   1   &   0   &   1   &   1   &   0   \\
+ \hline
+$ad$   &    1   &   0   &   0   &   1   &   1   &   0   &   1   &   1   \\
+ \hline
+$bd$   &    0   &   1   &   0   &   1   &   1   &   0   &   0   &   1   \\ 
+ \hline
+$abd$  &    1   &   1   &   0   &   1   &   0   &   1   &   0   &   0   \\
+ \hline
+$cd$   &    0   &   0   &   1   &   1   &   1   &   1   &   0   &   1   \\
+ \hline
+$acd$  &    1   &   0   &   1   &   1   &   0   &   0   &   0   &   0   \\
+ \hline
+$bcd$  &    0   &   1   &   1   &   1   &   0   &   0   &   1   &   0   \\
+ \hline
+$abcd$ &    1   &   1   &   1   &   1   &   1   &   1   &   1   &   1   \\
+ \hline
+\end{tabular}
+\end{center}
+\newpage
+\begin{paragraph}{Confounded effects (source:\href{http://home.iitk.ac.in/~shalab/anova/chapter9-anova-confounding.pdf}{NPTEL}) : }
+When the no. of treatment combinations in a factorial experiment (such as in this problem) become very high, it may be difficult to get the blocks of sufficiently large size to accommodate all the treatment combinations. Under such situations one may either use connected incomplete block design where all the effects can be estimated or use unconnected designs where not all these effects can be estimated (our case). Non-estimable effects are said to be confounded i.e. mixed with the blocks.
+\end{paragraph}
+
+
+\begin{paragraph}{option 1 $ABC$: }
+    To get the corresponding values for the effect $ABC$, only the columns $A$, $B$, $C$ are considered. For each treatment (each row) we have to determine whether the no. of $0$s in the binary sequence is even or odd. We do that by calculating the parity i.e. \\
+    \[
+    parity= bit\,n \oplus \cdots bit\,2 \oplus bit\,1 \;(\oplus \; is\,bitwise\, XOR)\\
+    \]
+    Parity is $1$ for odd no. of $1$s and $0$ otherwise. Comparing parity with the length of sequence we can 
+    get whether the count of 0s are odd or even.
+\newline
+For $ABC$ to be confounded the two blocks should be the following\\ \\
+Block $1$: $a,b,c,abc,ad,bd,cd,abcd$\\
+Block $2$: $(1),ab,ac,bc,d,abd,acd,bcd$
+\end{paragraph}
+\begin{paragraph}{option 2 $ABD$: }
+    For $ABD$ to be confounded the two blocks should be the following\\ \\    
+    Block $1$: $a,b,d,ac,bc,cd,abd,abcd$ \\
+    Block $2$: $c,ab,ad,bd,(1),abc,acd,bcd$ \\
+\end{paragraph}
+
+\begin{paragraph}{option 3 $BCD$: }
+    For $BCD$ to be confounded the two blocks should be the following\\ \\    
+    Block $1$: $b,c,d,ab,ac,ad,bcd,abcd$ \\
+    Block $2$: $a,bc,bd,cd,(1),abc,abd,acd$ \\
+\end{paragraph}
+
+\begin{paragraph}{option 4 $ABCD$: }
+    For $ABCD$ to be confounded the two blocks should be the following\\ \\    
+    Block $1$: $ab,ac,ad,bc,bd,cd,(1),abcd$ \\
+    Block $2$: $a,b,c,d,abc,abd,acd,bcd$ \\
+\end{paragraph}
+\\
+\\
+We can see that one of the block that is given in the question matches perfectly with option 1 ($ABC$) Block $1$. Hence we conclude that $ABC$ is confounded. (Ans.)
+\end{document}
