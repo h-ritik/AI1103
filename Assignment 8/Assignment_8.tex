@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{units}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm, amssymb, bm}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary {shapes ,arrows , positioning }
+\usetikzlibrary{calc,arrows.meta,positioning}
+\usetikzlibrary{calc, automata, chains, arrows.meta}
+\tikzset{
+    every node/.style={font=\sffamily\small},
+    main node/.style={thick,circle,draw,font=\sffamily\Large}
+}
+\usepackage{lipsum}
+\usepackage{mwe}
+\usetikzlibrary{shapes, arrows, positioning, fit, calc}
+\newtheorem{theorem}{Theorem}
+\newtheorem{Property}{Property}
+\theoremstyle{remark}
+\newtheorem*{defn}{Definition}
+\renewcommand{\vec}[1]{\underline{#1}}
+\usepackage{units}
+\usepackage{fancyvrb}
+\usepackage{hyperref}
+\fvset{fontsize=\normalsize}
+
+\title{AI1103 Assignement 8}
+\author{Hritik Sarkar}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+
+\begin{document}
+\maketitle
+Paper - \href{https://gate.iitkgp.ac.in/old_question_papers.html}{Gate-2021-Statistics}\\
+Q1. Let $X$ be a non-constant positive random variable such that $\mathbb{E}(X)=9$. Then which of the following statesments is True?\\
+\newline
+1) $\mathbb{E}(\frac{1}{X+1})>0.1$ and $P(X\ge10)\le0.9$\\
+2) $\mathbb{E}(\frac{1}{X+1})<0.1$ and $P(X\ge10)\le0.9$\\
+3) $\mathbb{E}(\frac{1}{X+1})>0.1$ and $P(X\ge10)>0.9$\\
+4) $\mathbb{E}(\frac{1}{X+1})<0.1$ and $P(X\ge10)>0.9$\\
+\newline
+Ans.    We need to inequalities to solve the problem. The first one is Jensen's inequality, and the second one is Markov's inequality.\\
+Jensen's inequality states that, for a random variable $X$ and a convex function $\phi$ the below inequality holds,
+\[
+    \mathbb{E}[\phi(X)]\; > \; \phi(\mathbb{E}[X])
+\]
+We need to show, $\phi(X)=\frac{1}{X+1}$ is convex. Now, $\phi'(X)=-\frac{1}{(1+X)^2}$ and $\phi"(X)=\frac{2}{(1+X)^3}$. We observe, 
+\[
+    \phi"(X) > 0\; for \; X>0 
+\]
+So, $\phi$ is a convex function, and we can say
+
+\[
+    \mathbb{E}(\frac{1}{X+1})>0.1
+\]
+Markov's inequality states that, for a non-negative random variable $X$ and $a>0$, the below inequality holds,
+\[P(X\ge a) \le \frac{\mathbb{E}(X)}{a}\]
+Putting $a=10$, we get
+\[
+    P(X\ge10)\le0.9
+\]
+So,
+\[
+    \mathbb{E}(\frac{1}{X+1})>0.1\; and \; P(X\ge10)\le0.9
+\]
+\end{document}
